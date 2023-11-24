@@ -34,5 +34,5 @@ jobs:
       # Poussez l'image Docker vers le registre (remplacez par votre registre de conteneurs)
       - name: Push Docker Image
         run: |
-          echo "DOCKER_HUB_TOKEN=${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+          echo "DOCKER_HUB_TOKEN=${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u hmzaakun --password-stdin
           docker push mon-projet-python:latest
