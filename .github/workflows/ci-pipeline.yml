@@ -10,30 +10,29 @@ on:
       - develop
       - feature/*
 
-  jobs:
-    build-and-test:
-      runs-on: ubuntu-latest
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
 
-      steps:
-        - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-        # Compilation/Build du projet
-        - name: Build Project
-          run: |
-            docker build -t mon-projet-python:latest .
-            docker run mon-projet-python:latest
+      - name: Build Project
+        run: |
+          echo "Le projet n'a pas besoin d'une étape de compilation explicite pour Python"
 
-        # Construction de l'image Docker
-        - name: Build Docker Image
-          run: docker build -t mon-projet-python:latest .
+      # Exécution des tests unitaires
+      - name: Run Unit Tests
+        run: |
+          python -m unittest discover
 
-        # Exécution des tests unitaires
-        - name: Run Unit Tests
-          run: |
-            # Ajoutez vos commandes pour exécuter les tests unitaires
+      # Construction de l'image Docker (assurez-vous que le Dockerfile est à la racine du projet)
+      - name: Build Docker Image
+        run: |
+          docker build -t mon-projet-python:latest .
 
-        # Poussez l'image Docker vers le registre
-        - name: Push Docker Image
-          run: |
-            echo "DOCKER_HUB_TOKEN=${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
-            docker push mon-projet:latest
+      # Poussez l'image Docker vers le registre (remplacez par votre registre de conteneurs)
+      - name: Push Docker Image
+        run: |
+          echo "DOCKER_HUB_TOKEN=${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+          docker push mon-projet-python:latest
