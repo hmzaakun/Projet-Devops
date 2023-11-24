@@ -20,18 +20,17 @@ on:
         # Compilation/Build du projet
         - name: Build Project
           run: |
-            # Ajoutez vos commandes de build ici
-            # Par exemple: ./gradlew build si vous utilisez Gradle
+            docker build -t mon-projet-python:latest .
+            docker run mon-projet-python:latest
 
         # Construction de l'image Docker
         - name: Build Docker Image
-          run: docker build -t mon-projet:latest .
+          run: docker build -t mon-projet-python:latest .
 
         # Exécution des tests unitaires
         - name: Run Unit Tests
           run: |
             # Ajoutez vos commandes pour exécuter les tests unitaires
-            # Par exemple: ./gradlew test si vous utilisez Gradle
 
         # Poussez l'image Docker vers le registre
         - name: Push Docker Image
