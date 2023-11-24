@@ -29,3 +29,5 @@ Ce projet utilise la méthodologie GitFlow pour organiser le développement et a
 
 - **Protection de `main` et `develop`** : Ces branches sont protégées. Les Pull Requests sont nécessaires pour les modifications, avec des revues de code obligatoires.
 - **Tests CI** : Toute fusion dans `main` et `develop` nécessite le passage réussi des tests d'intégration continue (CI).
+
+:shipit:
